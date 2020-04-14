@@ -20,6 +20,8 @@
 package com.owncloud.android.extensions
 
 import android.app.Activity
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 
 fun Activity.showError(genericErrorMessage: String, throwable: Throwable?) =
@@ -32,4 +34,12 @@ fun Activity.showMessage(
     duration: Int = Snackbar.LENGTH_LONG
 ) {
     Snackbar.make(findViewById(android.R.id.content), message, duration).show()
+}
+
+fun AppCompatActivity.showMessageInSnackbar(
+    view: View,
+    message: String,
+    duration: Int = Snackbar.LENGTH_LONG
+) {
+    Snackbar.make(view, message, duration).show()
 }
