@@ -26,20 +26,13 @@ import com.google.android.material.snackbar.Snackbar
 
 fun Activity.showError(genericErrorMessage: String, throwable: Throwable?) =
     throwable?.let {
-        showMessage(it.parseError(genericErrorMessage, resources))
+        showMessageInSnackbar(message = it.parseError(genericErrorMessage, resources))
     }
 
-fun Activity.showMessage(
+fun Activity.showMessageInSnackbar(
+    layoutId: Int = android.R.id.content,
     message: CharSequence,
     duration: Int = Snackbar.LENGTH_LONG
 ) {
-    Snackbar.make(findViewById(android.R.id.content), message, duration).show()
-}
-
-fun AppCompatActivity.showMessageInSnackbar(
-    view: View,
-    message: String,
-    duration: Int = Snackbar.LENGTH_LONG
-) {
-    Snackbar.make(view, message, duration).show()
+    Snackbar.make(findViewById(layoutId), message, duration).show()
 }
